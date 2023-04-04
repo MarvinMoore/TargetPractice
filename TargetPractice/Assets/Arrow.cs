@@ -21,6 +21,9 @@ public class Arrow : MonoBehaviour
         }
     }
     private void OnCollisionEnter2D(Collision2D collision){
+        if(collision.gameObject.CompareTag("MovingTarget")){
+            Destroy(gameObject, 1);
+        }
         hasHit = true;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
