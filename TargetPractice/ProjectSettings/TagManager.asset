@@ -8,6 +8,9 @@ TagManager:
   - TopThreshold
   - BottomThreshold
   - MovingTarget
+  - Bow
+  - TargetSpawner
+  - ArrowSounds
   layers:
   - Default
   - TransparentFX

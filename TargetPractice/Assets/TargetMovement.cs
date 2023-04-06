@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class TargetMovement : MonoBehaviour
 {
     public float speed;
     public bool movingUp = true;
     public bool movingDown = false;
+    Spawner spawn;
     // Start is called before the first frame update
     void Start()
     {
+        spawn = GameObject.FindGameObjectWithTag("TargetSpawner").GetComponent<Spawner>();
     }
     // Update is called once per frame
     void Update()
@@ -28,7 +29,9 @@ public class TargetMovement : MonoBehaviour
             movingUp = false;
             movingDown = false;
             Debug.Log("collision detected!");
-           Destroy(gameObject, 2);
+            gameObject.SetActive(false);
+            spawn.SpawnTarget();
+            Destroy(gameObject);
         }
         if(trig.gameObject.CompareTag("TopThreshold")){
             movingDown = true;
