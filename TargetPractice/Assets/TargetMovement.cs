@@ -22,16 +22,21 @@ public class TargetMovement : MonoBehaviour
         if (movingDown) {
             transform.Translate(0, Time.deltaTime * -1 * speed, 0, Space.World);
         }
+        if ((movingUp == false) && (movingDown == false))
+            movingUp = true;
     }
 
     void OnTriggerEnter2D(Collider2D trig){
         if(trig.gameObject.CompareTag("Arrow")){
+            //gameObject.SetActive(false);
             movingUp = false;
             movingDown = false;
             Debug.Log("collision detected!");
-            gameObject.SetActive(false);
+            spawn.KillTarget(gameObject);
             spawn.SpawnTarget();
-            Destroy(gameObject);
+            ScoreManager.instance.changeScore(1);
+             //Wait 2 seconds before spawning another target
+           // movingUp = true;
         }
         if(trig.gameObject.CompareTag("TopThreshold")){
             movingDown = true;
@@ -41,5 +46,8 @@ public class TargetMovement : MonoBehaviour
             movingUp = true;
             movingDown = false;
         }
+    }
+    IEnumerator Wait(){
+        yield return new WaitForSeconds(2.0f); //Wait a while before resetting slider value/force
     }
 }

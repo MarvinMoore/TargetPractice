@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {   
-    Bow bow;
     Rigidbody2D rb;
     bool hasHit;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bow = GameObject.FindGameObjectWithTag("Bow").GetComponent<Bow>();
     }
 
     // Update is called once per frame
@@ -27,8 +25,6 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject.CompareTag("MovingTarget")){
             Debug.Log("Arrow Detected Collision");
-            bow.IncrementScore();
-            bow.getSound();
             Destroy(gameObject);
         }
         hasHit = true;

@@ -9,10 +9,6 @@ public class Bow : MonoBehaviour
     public float launchForce;
     public Transform shotPoint;
     public Slider forceUI;
-    public Text text;
-    int score = 0;
-    public AudioSource audioSource;
-    public AudioClip pop;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +16,6 @@ public class Bow : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void IncrementScore(){
-        score = score + 1;
-        Debug.Log("newScore:"+score);
-        text.text = score.ToString();
-    }
     void Update()
     {
        Vector2 bowPosition = transform.position;
@@ -57,9 +48,6 @@ public class Bow : MonoBehaviour
     {
         launchForce = 0;
         forceUI.value = 0;
-    }
-    public void getSound(){
-        audioSource.PlayOneShot(pop);
     }
     IEnumerator Wait(){
         yield return new WaitForSeconds(1.5f); //Wait a while before resetting slider value/force
