@@ -28,6 +28,7 @@ public class TargetMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D trig){
         if(trig.gameObject.CompareTag("Arrow")){
+            speed+=1;
             //gameObject.SetActive(false);
             movingUp = false;
             movingDown = false;
